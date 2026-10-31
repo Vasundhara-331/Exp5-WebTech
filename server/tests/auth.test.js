@@ -43,6 +43,14 @@ describe('auth', () => {
     expect(res.body.user.name).toBe(VALID_USER.name);
   });
 
+  it('/session returns null for visitors and the user once logged in', async () => {
+    const anon = await request(app).get('/api/auth/session').expect(200);
+    expect(anon.body.user).toBeNull();
+    const agent = await loggedInAgent();
+    const res = await agent.get('/api/auth/session').expect(200);
+    expect(res.body.user.email).toBe(VALID_USER.email);
+  });
+
   it('rejects a forged token', async () => {
     await request(app)
       .get('/api/auth/me')

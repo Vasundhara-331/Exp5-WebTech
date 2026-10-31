@@ -16,12 +16,25 @@ export default function Gallery() {
       <h1>Gallery</h1>
       <p className="muted">Moments from TechFest 2025.</p>
       <div className="gallery">
-        {PHOTOS.map((p) => (
-          <figure key={p.file}>
-            <img src={`/gallery/${p.file}.svg`} alt={p.caption} />
-            <figcaption>{p.caption}</figcaption>
-          </figure>
-        ))}
+        {PHOTOS.map((p, i) => {
+          // The first row is visible immediately (the LCP image), so fetch it eagerly and first.
+          // Everything below the fold is only downloaded when the user scrolls near it.
+          const aboveFold = i < 3;
+          return (
+            <figure key={p.file}>
+              <img
+                src={`/gallery/${p.file}.svg`}
+                alt={p.caption}
+                width="800"
+                height="600"
+                loading={aboveFold ? 'eager' : 'lazy'}
+                fetchPriority={i === 0 ? 'high' : 'auto'}
+                decoding="async"
+              />
+              <figcaption>{p.caption}</figcaption>
+            </figure>
+          );
+        })}
       </div>
     </section>
   );

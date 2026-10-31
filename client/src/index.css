@@ -29,7 +29,8 @@ h2 { font-size: 1.4rem; margin-top: 2rem; }
 img { max-width: 100%; display: block; }
 
 .app { min-height: 100vh; display: flex; flex-direction: column; }
-main { flex: 1; }
+/* min-height keeps the footer below the fold while a lazy page loads, so nothing visible shifts (CLS) */
+main { flex: 1; min-height: 100vh; }
 .container { width: min(1100px, 100%); margin: 0 auto; padding: 0 16px; }
 .page { padding-top: 2.5rem; padding-bottom: 3rem; }
 .narrow { max-width: 640px; }

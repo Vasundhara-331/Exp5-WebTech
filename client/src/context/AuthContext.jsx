@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
 
   // The session cookie is httpOnly, so ask the server who we are instead of reading it.
   useEffect(() => {
-    api('/auth/me')
+    api('/auth/session')
       .then((d) => setUser(d.user))
       .catch(() => setUser(null))
       .finally(() => setLoading(false));

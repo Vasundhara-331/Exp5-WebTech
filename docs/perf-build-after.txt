@@ -1,0 +1,15 @@
+dist/index.html                             0.84 kB │ gzip:  0.45 kB
+dist/assets/index-BOQY_k9u.css              6.84 kB │ gzip:  2.26 kB
+dist/assets/NotFound-D_qTIZET.js            0.35 kB │ gzip:  0.24 kB
+dist/assets/rolldown-runtime-WkwZ5CU-.js    0.59 kB │ gzip:  0.36 kB
+dist/assets/validation-DU13uxWZ.js          0.73 kB │ gzip:  0.40 kB
+dist/assets/Dashboard-CvLe92Kv.js           1.05 kB │ gzip:  0.56 kB
+dist/assets/Gallery-CBDKkVUo.js             1.11 kB │ gzip:  0.61 kB
+dist/assets/Schedule-BvPwjZsp.js            1.19 kB │ gzip:  0.61 kB
+dist/assets/EventCard-BEUk4CLw.js           1.37 kB │ gzip:  0.61 kB
+dist/assets/Login-uxFfBiBr.js               1.59 kB │ gzip:  0.79 kB
+dist/assets/Register-DD962rxr.js            1.98 kB │ gzip:  0.88 kB
+dist/assets/Events-BIxSlatb.js              2.31 kB │ gzip:  1.06 kB
+dist/assets/Feedback-DcbCFzIr.js            2.33 kB │ gzip:  1.04 kB
+dist/assets/index-jNcEkYUy.js               9.00 kB │ gzip:  3.40 kB
+dist/assets/vendor-C1Vu3ixi.js            256.82 kB │ gzip: 81.47 kB
