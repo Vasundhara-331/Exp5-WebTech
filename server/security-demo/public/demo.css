@@ -1,0 +1,14 @@
+body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; background: #f6f7fb; color: #1d2433; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.badge { padding: .35rem .75rem; border-radius: 999px; font-weight: 700; font-size: .8rem; color: #fff; }
+.vulnerable .badge { background: #c62828; }
+.secure .badge { background: #2e7d32; }
+section { background: #fff; border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+form { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+input, textarea { flex: 1 1 200px; padding: .55rem; border: 1px solid #c8cdd8; border-radius: 8px; font: inherit; }
+button { padding: .55rem 1rem; border: 0; border-radius: 8px; background: #3949ab; color: #fff; font: inherit; cursor: pointer; }
+button.danger { background: #c62828; }
+pre { background: #10131a; color: #e6e6e6; padding: .75rem; border-radius: 8px; white-space: pre-wrap; }
+pre.ok { border-left: 4px solid #ef5350; }
+pre.fail { border-left: 4px solid #66bb6a; }
+li { padding: .35rem 0; border-bottom: 1px solid #eee; word-break: break-word; }
