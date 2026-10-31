@@ -1,0 +1,26 @@
+*   54968f0 Merge branch 'deploy-config'
+|\  
+| * 4e8fa3f deploy: Render blueprint for the API and Netlify config for the frontend
+|/  
+*   55e4164 Merge branch 'perf-optimization'
+|\  
+| * 52f7139 perf: lazy-load routes and gallery images, vendor chunk, Lighthouse fixes
+|/  
+*   7562835 Merge branch 'ci-pipeline'
+|\  
+| * 4ec1223 ci: GitHub Actions pipeline - test server, test and build client, deploy hooks on main
+|/  
+*   dd061f5 Merge branch 'hero-copy' (conflict resolved)
+|\  
+| * f26f406 content: highlight participant numbers in hero tagline
+* | 17d0d54 content: mention the three-day campus format in hero tagline
+|/  
+*   cff22d1 Merge branch 'feature-page'
+|\  
+| * a3d423f feat(client): add Schedule page grouping events by day
+|/  
+* 432b8e1 feat(client): React + Vite frontend for the TechFest 2026 portal
+* 79b5fd5 feat(security-demo): vulnerable vs secure copy for NoSQL injection and XSS demo
+* 50fd438 test(server): Jest + Supertest suite including OWASP security checks
+* 6e73441 feat(server): Express API with auth, events, registrations and feedback
+* 4593306 chore: initialise repository with .gitignore

@@ -1,0 +1,7 @@
+Payloads: login body {"email":{"$ne":null},"password":{"$ne":null}}, feedback <script>alert('hi')</script>
+┌─────────┬──────────────┬─────────────────────────────────────────────────┬─────────────────────────────┬───────────┐
+│ (index) │ mode         │ injection                                       │ xss                         │ csp       │
+├─────────┼──────────────┼─────────────────────────────────────────────────┼─────────────────────────────┼───────────┤
+│ 0       │ 'vulnerable' │ 'BYPASSED - Logged in as admin@techfest.in'     │ 'SCRIPT INJECTED into page' │ 'missing' │
+│ 1       │ 'secure'     │ 'blocked (400 Email and password must be text)' │ 'escaped, shown as text'    │ 'present' │
+└─────────┴──────────────┴─────────────────────────────────────────────────┴─────────────────────────────┴───────────┘

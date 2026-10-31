@@ -1,5 +1,5 @@
 # Render Blueprint for the TechFest 2026 API (optional: you can also fill the same values in
-# the Render dashboard by hand - see DEPLOYMENT.md, step 13).
+# the Render dashboard by hand - see DEPLOYMENT_REPORT.md, section 6.3).
 services:
   - type: web
     name: techfest-2026-api
