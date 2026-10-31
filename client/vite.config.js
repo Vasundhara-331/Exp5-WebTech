@@ -10,6 +10,17 @@ export default defineConfig({
     // so the auth cookie is always first-party and SameSite=Strict works on every browser.
     proxy: { '/api': 'http://localhost:5000' },
   },
+  build: {
+    // Vite minifies JS/CSS and hashes file names by default. On top of that, keep React and the
+    // router in their own "vendor" file: it rarely changes, so browsers keep it cached across deploys.
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [{ name: 'vendor', test: /node_modules[\\/](react|react-dom|react-router|scheduler)/ }],
+        },
+      },
+    },
+  },
   test: {
     environment: 'node',
   },

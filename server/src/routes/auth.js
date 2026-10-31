@@ -3,7 +3,7 @@ const { body } = require('express-validator');
 const rateLimit = require('express-rate-limit');
 const User = require('../models/User');
 const validate = require('../middleware/validate');
-const { issueToken, clearToken, requireAuth } = require('../middleware/auth');
+const { issueToken, clearToken, requireAuth, userFromRequest } = require('../middleware/auth');
 
 // Slows down password guessing: 20 attempts per 15 minutes per IP.
 const authLimiter = rateLimit({
@@ -81,6 +81,17 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', requireAuth, (req, res) => {
   res.json({ user: req.user });
+});
+
+// Used by the frontend on every page load. Logged-out visitors get 200 { user: null }
+// instead of a 401, so the browser console stays free of errors.
+router.get('/session', async (req, res, next) => {
+  try {
+    res.set('Cache-Control', 'private, no-store');
+    res.json({ user: await userFromRequest(req) });
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;

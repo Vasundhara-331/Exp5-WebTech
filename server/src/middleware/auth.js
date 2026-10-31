@@ -23,18 +23,27 @@ function clearToken(res) {
   res.clearCookie(config.cookieName, opts);
 }
 
-async function requireAuth(req, res, next) {
+// Returns the logged-in user for this request, or null if the cookie is missing, forged or expired.
+async function userFromRequest(req) {
   const token = req.cookies?.[config.cookieName];
-  if (!token) return res.status(401).json({ error: 'Please log in to continue' });
+  if (!token) return null;
   try {
     const payload = jwt.verify(token, config.jwtSecret, { algorithms: ['HS256'] });
-    const user = await User.findById(payload.sub);
-    if (!user) return res.status(401).json({ error: 'Session is no longer valid' });
-    req.user = user;
-    next();
+    return await User.findById(payload.sub);
   } catch {
-    return res.status(401).json({ error: 'Session expired, please log in again' });
+    return null;
   }
 }
 
-module.exports = { issueToken, clearToken, requireAuth, cookieOptions };
+async function requireAuth(req, res, next) {
+  try {
+    const user = await userFromRequest(req);
+    if (!user) return res.status(401).json({ error: 'Please log in to continue' });
+    req.user = user;
+    next();
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { issueToken, clearToken, requireAuth, userFromRequest, cookieOptions };
