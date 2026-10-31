@@ -22,7 +22,9 @@ export default function Home() {
           <h1>
             Three days to build, break <span className="accent">and celebrate</span> tech.
           </h1>
-          <p className="lead">Hackathons, workshops, robotics, gaming and music across three days at our campus.</p>
+          <p className="lead">
+            Hackathons, workshops, robotics, gaming and music with 2,000+ students from 40 colleges. One pass, one portal.
+          </p>
           <div className="hero-actions">
             <Link to="/events" className="btn btn-primary btn-lg">
               Browse events
