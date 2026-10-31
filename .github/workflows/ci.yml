@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server:
+    name: Server - install, test, audit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+      - name: Run Jest + Supertest (uses an in-memory MongoDB)
+        run: npm test
+      - name: Check production dependencies for known vulnerabilities
+        run: npm audit --omit=dev --audit-level=high
+
+  client:
+    name: Client - install, test, build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - name: Production build (minified, code-split)
+        run: npm run build
+        env:
+          VITE_API_URL: https://example.onrender.com
+      - uses: actions/upload-artifact@v4
+        with:
+          name: client-dist
+          path: client/dist
+          retention-days: 7
+
+  # CD: only after both jobs are green on main, trigger the hosting platforms.
+  # Add RENDER_DEPLOY_HOOK_URL / NETLIFY_BUILD_HOOK_URL as repository secrets to enable;
+  # without them this job just prints a note (Render/Netlify can also auto-deploy from GitHub).
+  deploy:
+    name: Deploy (main only)
+    needs: [server, client]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "RENDER_DEPLOY_HOOK_URL not set - skipping"; exit 0; fi
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "Render deploy triggered"
+      - name: Trigger Netlify build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "NETLIFY_BUILD_HOOK_URL not set - skipping"; exit 0; fi
+          curl -fsS -X POST -d '{}' "$HOOK" > /dev/null && echo "Netlify build triggered"
