@@ -1,26 +1,34 @@
-*   54968f0 Merge branch 'deploy-config'
+*   117b935 Merge GitHub's initial commit into main
 |\  
-| * 4e8fa3f deploy: Render blueprint for the API and Netlify config for the frontend
-|/  
-*   55e4164 Merge branch 'perf-optimization'
+| * a314c5c Initial commit
+*   1067a2e Merge branch 'light-theme'
 |\  
-| * 52f7139 perf: lazy-load routes and gallery images, vendor chunk, Lighthouse fixes
+| * 5eb580a style: switch the UI to a light theme
 |/  
-*   7562835 Merge branch 'ci-pipeline'
+* 46a476d docs: README, deployment report, security demo evidence and git history
+*   949de34 Merge branch 'deploy-config'
 |\  
-| * 4ec1223 ci: GitHub Actions pipeline - test server, test and build client, deploy hooks on main
+| * 3d78c99 deploy: Render blueprint for the API and Netlify config for the frontend
 |/  
-*   dd061f5 Merge branch 'hero-copy' (conflict resolved)
+*   db0c126 Merge branch 'perf-optimization'
 |\  
-| * f26f406 content: highlight participant numbers in hero tagline
-* | 17d0d54 content: mention the three-day campus format in hero tagline
+| * 0232bf9 perf: lazy-load routes and gallery images, vendor chunk, Lighthouse fixes
 |/  
-*   cff22d1 Merge branch 'feature-page'
+*   41a4af7 Merge branch 'ci-pipeline'
 |\  
-| * a3d423f feat(client): add Schedule page grouping events by day
+| * c28dab0 ci: GitHub Actions pipeline - test server, test and build client, deploy hooks on main
 |/  
-* 432b8e1 feat(client): React + Vite frontend for the TechFest 2026 portal
-* 79b5fd5 feat(security-demo): vulnerable vs secure copy for NoSQL injection and XSS demo
-* 50fd438 test(server): Jest + Supertest suite including OWASP security checks
-* 6e73441 feat(server): Express API with auth, events, registrations and feedback
-* 4593306 chore: initialise repository with .gitignore
+*   4b698f2 Merge branch 'hero-copy' (conflict resolved)
+|\  
+| * f09a093 content: highlight participant numbers in hero tagline
+* | 520e596 content: mention the three-day campus format in hero tagline
+|/  
+*   cd60ac4 Merge branch 'feature-page'
+|\  
+| * 968b497 feat(client): add Schedule page grouping events by day
+|/  
+* 761f8ac feat(client): React + Vite frontend for the TechFest 2026 portal
+* 3ac1a60 feat(security-demo): vulnerable vs secure copy for NoSQL injection and XSS demo
+* a4c2a5c test(server): Jest + Supertest suite including OWASP security checks
+* 6233e83 feat(server): Express API with auth, events, registrations and feedback
+* a4cf71a chore: initialise repository with .gitignore
